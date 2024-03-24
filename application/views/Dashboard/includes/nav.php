@@ -11,7 +11,7 @@
                 </li>
             </ul>
             <ul class="navbar-nav navbar-right">
-                <li class="nav-item"><a class="nav-link" href="<?=site_url('dashboard/logout')?>">Logout</a></li>
+                <li class="nav-item"><a class="nav-link" href="<?=site_url('home/logout')?>">Logout</a></li>
             </ul>
         </div>
     </div>

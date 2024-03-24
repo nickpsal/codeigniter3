@@ -19,6 +19,16 @@
 			}
 		}
 
+		public function logout() {
+			if (isset($_SESSION['u_name'])) {
+                session_unset();
+				session_destroy();
+                redirect('home', 'refresh');
+            }else {
+                redirect('home', 'refresh');
+            }
+		}
+
 		public function register()
 		{
 			$this->load->view('includes/header');
