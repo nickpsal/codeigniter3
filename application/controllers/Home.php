@@ -2,6 +2,12 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Home extends CI_Controller {
+	
+	public function __construct() {
+		parent::__construct();
+		$this->load->model('Users');
+	}
+
 	public function index()
 	{
 		$this->load->view('includes/header');
@@ -18,9 +24,15 @@ class Home extends CI_Controller {
 
 	public function validateLogin() {
 		if ($this->input->post('submit')) {
-			$data['u_name'] = $this->input->post('u_name');
-			$data['u_password'] = $this->input->post('u_password');
-			print_r($data);
+			$userData['u_name'] = $this->input->post('u_name');
+			$allUsers = $this->db->get_where("Users", $userData)->row();
+			$userData['u_password'] = $this->input->post('u_password');
+			if ($allUsers && password_verify($userData['u_password'], $allUsers->u_password)) {
+				echo "Success";
+			}else{
+				echo "<script>alert('Wrong Username or Password');</script>";
+				redirect("home", "refresh");
+			}
 		}else {
 			redirect("home", "refresh");
 		}
@@ -28,11 +40,22 @@ class Home extends CI_Controller {
 
 	public function validateRegister() {
 		if ($this->input->post('submit')) {
-			if ($this->input->post('u_password') == $this->input->post('verify_u_password')) { 
-				$data['u_name'] = $this->input->post('u_name');
-				print_r($data);
+			$userData['u_email'] = $this->input->post('u_email');
+			$userData['u_name'] = $this->input->post('u_name');
+			$allUsers = $this->db->get_where("Users", $userData)->row();
+			if (!$allUsers) {
+				if ($this->input->post('u_password') == $this->input->post('verify_u_password')) { 
+					$userData['u_fullname'] = $this->input->post('u_fullname');
+					$userData['u_password'] = password_hash($this->input->post('u_password'), PASSWORD_DEFAULT);
+					$this->Users->insertUser($userData);
+					redirect("home", "refresh");
+				}else {
+					echo "<script>alert('Password and Confirm Password dont Match');</script>";
+					redirect('home/register', 'refresh');
+				}
 			}else {
-				redirect('home/register', 'refresh');
+				echo "<script>alert('User Already exists Please Login');</script>";
+				redirect("home", "refresh");
 			}
 		}else {
 			redirect("home", "refresh");
