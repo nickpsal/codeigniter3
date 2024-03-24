@@ -10,9 +10,13 @@
 
 		public function index()
 		{
-			$this->load->view('includes/header');
-			$this->load->view('home');
-			$this->load->view('includes/footer');
+			if (!isset($_SESSION['u_name'])) {
+				$this->load->view('includes/header');
+				$this->load->view('home');
+				$this->load->view('includes/footer');
+			}else {
+				redirect('dashboard', 'refresh');
+			}
 		}
 
 		public function register()
@@ -29,7 +33,7 @@
 				$userData['u_password'] = $this->input->post('u_password');
 				if ($allUsers && password_verify($userData['u_password'], $allUsers->u_password)) {
 					$_SESSION['u_name'] = $userData['u_name'];
-					redirect('dashboard/home', 'refresh');
+					redirect('dashboard', 'refresh');
 				}else{
 					echo "<script>alert('Wrong Username or Password');</script>";
 					redirect("home", "refresh");
