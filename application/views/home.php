@@ -18,7 +18,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</div>
 				<div class="form-group mt-2 text-center">
 					<input type="submit" name="submit" class="btn btn-success btn-sm w-25" value="Login">
-					<a href="#" type="submit" class="btn btn-warning btn-sm w-25">Register</a>
+					<a href="<?=site_url('home/register')?>" type="submit" class="btn btn-warning btn-sm w-25">Register</a>
 				</div>
 				<?=form_close()?>
 			</div>
