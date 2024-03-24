@@ -1,8 +1,14 @@
 .nav-pills .nav-item {
-    border-bottom: 1px solid #ccc; /* Insert a border at the bottom of each list item */
+    border-bottom: 1px solid #ccc;
     border-top: 1px solid #ccc;
     border-right: 1px solid #ccc;
     border-left: 1px solid #ccc;
-    padding-bottom: 5px; /* Add some padding at the bottom of each list item */
-    margin-bottom: 5px; /* Add some margin at the bottom of each list item */
+}
+
+.d-flex {
+    border-bottom: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    margin-left: 2px;
 }
