@@ -22,15 +22,30 @@
 			$this->load->view('includes/footer');
 		}
 
-		public function update($id) {
-			$data['Title'] = "Demo News Title";
-			$data['Text'] = "Demo News Text";
-			$this->News->updateNews($id, $data);
+		public function insert() {
+			if ($this->input->server('REQUEST_METHOD') === 'GET') {
+				$data['pageTitle'] = "Add new News";
+				$this->load->view('includes/header', $data);
+				$this->load->view('insert', $data);
+				$this->load->view('includes/footer');
+			}else {
+
+			}
+		}
+
+		public function update($id = null) {
+			if ($this->uri->segment(3) != null) {
+				$data['Title'] = "Demo News Title";
+				$data['Text'] = "Demo News Text";
+				$this->News->updateNews($id, $data);
+			}
 			redirect("home", "refresh");
 		}
 
-		public function delete($id) {
-			$this->News->deleteNews($id);
+		public function delete($id = null) {
+			if ($this->uri->segment(3) != null) {
+				$this->News->deleteNews($id);
+			}
 			redirect("home", "refresh");
 		}
 	}
