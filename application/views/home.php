@@ -1,26 +1,51 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 ?>
 
 <div class="container">
-	<div class="row justify-content-center">
-		<div class="card mt-5 col-sm-6 col-md-6 col-xl-6">
-			<div class="card-header text-center">
-				<h4>Login</h4>
+	<div class="row">
+		<div class="card mt-3">
+			<div class="card-head">
+				<h1><?=$pageTitle?></h1>
 			</div>
 			<div class="card-body">
-				<?=form_open('home/validateLogin')?>
-				<div class="form-group">
-					<input type="text" name="u_name" class="form-control input-sm" placeholder="Username" required>
+				<div class="col-md-12">
+					<div class="panel panel-default">
+						<div class="panel-heading page-title" style="display: box; text-align: center;">
+						</div>
+						<div class="panel-body">
+							<table id="myTable" class="table table-striped">
+								<thead>
+									<tr>
+										<th>#</th>
+										<th>Title</th>
+										<th>Text</th>
+										<th>Date</th>
+										<th>Actons</th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php
+										foreach($Data as $row) {
+											?>
+												<tr>
+													<td><?=$row['Id']?></td>
+													<td><?=$row['Title']?></td>
+													<td><?=$row['Text']?></td>
+													<td><?=$row['Date']?></td>
+													<td>
+														<a href="#" class="btn btn-primary btn-sm">Edit</a>
+														<a href="#" class="btn btn-danger btn-sm">Delete</a>
+													</td>
+												</tr>
+											<?php
+										}
+									?>
+								</tbody>
+							</table>
+						</div>
+					</div>
 				</div>
-				<div class="form-group">
-					<input type="password" name="u_password" class="form-control input-sm" placeholder="Password" required>
-				</div>
-				<div class="form-group mt-2 text-center">
-					<input type="submit" name="submit" class="btn btn-success btn-sm w-25" value="Login">
-					<a href="<?=site_url('home/register')?>" type="submit" class="btn btn-warning btn-sm w-25">Register</a>
-				</div>
-				<?=form_close()?>
 			</div>
 		</div>
 	</div>
