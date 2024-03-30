@@ -14,6 +14,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						<div class="panel-heading page-title" style="display: box; text-align: center;">
 						</div>
 						<div class="panel-body">
+							<a href="#" class="btn btn-primary btn-sm">Insert</a>
 							<table id="myTable" class="table table-striped">
 								<thead>
 									<tr>
@@ -34,8 +35,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 													<td><?=$row['Text']?></td>
 													<td><?=$row['Date']?></td>
 													<td>
-														<a href="#" class="btn btn-primary btn-sm">Edit</a>
-														<a href="#" class="btn btn-danger btn-sm">Delete</a>
+														<a href="home/update/<?=$row['Id']?>" class="btn btn-primary btn-sm">Update</a>
+														<a href="home/delete/<?=$row['Id']?>" class="btn btn-danger btn-sm">Delete</a>
 													</td>
 												</tr>
 											<?php

@@ -11,7 +11,7 @@
 		public function index()
 		{
 			$data['pageTitle'] = "News Table List";
-			$data['Data'] = $this->News->getAll('news');
+			$data['Data'] = $this->News->getAllNews();
 			foreach ($data["Data"] as $row) {
 				$date = $row['Date'];
 				$date = new DateTime($date);
@@ -20,5 +20,17 @@
 			$this->load->view('includes/header', $data);
 			$this->load->view('home', $data);
 			$this->load->view('includes/footer');
+		}
+
+		public function update($id) {
+			$data['Title'] = "Demo News Title";
+			$data['Text'] = "Demo News Text";
+			$this->News->updateNews($id, $data);
+			redirect("home", "refresh");
+		}
+
+		public function delete($id) {
+			$this->News->deleteNews($id);
+			redirect("home", "refresh");
 		}
 	}
