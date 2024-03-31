@@ -43,17 +43,19 @@
 
 		public function update($id = null) {
 			if ($this->input->server('REQUEST_METHOD') === 'POST') {
+				$Id = $this->input->post('Id');
 				$data['Title'] = $this->input->post('Title');
 				$data['Text'] = $this->input->post('Text');
-				$this->News->updateNews($_GET['Id'], $data);
+				$this->News->updateNews($Id, $data);
 				redirect("home", 'refresh');
 			}else {
-				$id = $this->uri->segment(3);
-				$data = $this->News->getNewbyID($id);
-				if (!empty($data)) {
-					$this->loadView('update', 'Update News', $data);	
+				$data['pageTitle'] = 'pageTitle';
+				if ($this->uri->segment(3) != null) {
+					$id = $this->uri->segment(3);
+					$data['data'] = $this->News->getNewbyID($id);
+					$this->loadView('update', 'Update News', $data);
 				}else {
-					redirect('home', 'refresh');
+					redirect("home", 'refresh');
 				}
 			}
 		}

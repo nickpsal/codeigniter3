@@ -14,8 +14,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						<div class="panel-heading page-title" style="display: box; text-align: center;">
 						</div>
 						<div class="panel-body">
-							<?php echo form_open('home/insert'); ?>
+							<?php echo form_open('home/update'); ?>
 								<?php echo form_label('Title', 'Title'); ?>
+								<input type="text" name="Id" id="Id" value="<?php echo !empty($data->Id) ? $data->Id : ''; ?>" size="50" hidden/>
+								<br/>
 								<input type="text" name="Title" id="Title" value="<?php echo !empty($data->Title) ? $data->Title : ''; ?>" size="50" />
 								<br/>
 								<?php echo form_error('Title');?>

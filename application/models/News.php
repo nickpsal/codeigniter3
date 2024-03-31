@@ -21,7 +21,6 @@
             }
             $this->db->where('Id', $id);
             $this->db->update('news');
-            return $this->db->affected_rows() > 0;
         }
 
         public function deleteNews($id) {
