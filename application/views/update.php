@@ -16,17 +16,17 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						<div class="panel-body">
 							<?php echo form_open('home/insert'); ?>
 								<?php echo form_label('Title', 'Title'); ?>
-								<input type="text" name="Title" id="Title" size="50" />
+								<input type="text" name="Title" id="Title" value="<?php echo !empty($data->Title) ? $data->Title : ''; ?>" size="50" />
 								<br/>
 								<?php echo form_error('Title');?>
 								<br/>
 								<?php echo form_label('Text', 'Text'); ?>
-								<textarea name="Text" id="Text" rows="5" cols="48"></textarea>
+								<textarea name="Text" id="Text" rows="5" cols="48"><?php echo !empty($data->Text) ? $data->Text : ''; ?></textarea>
 								<br/>
 								<?php echo form_error('Text');?>
 								<br/>
 								<div>
-									<input type="submit" class="btn btn-primary btn-sm" value="Submit" />
+									<input type="submit" class="btn btn-primary btn-sm" value="Update" />
 									<a href="<?=site_url('home/')?>" name="back" class="btn btn-primary btn-sm">Back</a>
 								</div>
 							<?php echo form_close();?>

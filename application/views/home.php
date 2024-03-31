@@ -35,8 +35,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 													<td><?=$row['Text']?></td>
 													<td><?=$row['Date']?></td>
 													<td>
-														<a href="<?=site_url('home/update/')?>" name="update" class="btn btn-primary btn-sm">Update</a>
-														<a href="<?=site_url('home/delete/')?>" name="delete" class="btn btn-danger btn-sm">Delete</a>
+														<a href="<?=site_url('home/update/' . $row['Id'])?>" name="update" class="btn btn-primary btn-sm">Update</a>
+														<a href="<?=site_url('home/delete/' . $row['Id'])?>" name="delete" class="btn btn-danger btn-sm">Delete</a>
 													</td>
 												</tr>
 											<?php
