@@ -34,10 +34,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 													<td><?=$row['Title']?></td>
 													<td><?=$row['Text']?></td>
 													<td>
-														<?php
-															$date = new DateTime($row['Date']);
-															echo $date->format("d/m/Y");
-														?>
+														<?=date('d/m/Y', strtotime($row['Date']))?>
 													</td>
 													<td>
 														<a href="<?=site_url('home/update/' . $row['Id'])?>" name="update" class="btn btn-primary btn-sm">Update</a>
