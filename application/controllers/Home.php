@@ -14,7 +14,8 @@
 		{
 			$data['pageTitle'] = "News Table List";
 			$data['Data'] = $this->News->getAllNews();
-			$this->loadView('home', 'News Table List', $data);
+			$data['pageTitle'] = 'News Table List';
+			$this->loadView('home', $data);
 		}
 
 		public function insert() {
@@ -23,7 +24,8 @@
 				$this->form_validation->set_rules('Text', 'Text', 'required');
 				if ($this->form_validation->run() == FALSE) {
 					// Validation failed, re-display the form with errors
-					$this->loadView('insert', 'Add new News');
+					$data['pageTitle'] = 'Add new News';
+					$this->loadView('insert', $data);
 				}else {
 					$data['Title'] = $this->input->post('Title');
 					$data['Text'] = $this->input->post('Text');
@@ -32,7 +34,8 @@
 					redirect("home", 'refresh');
 				}	
 			}else {
-				$this->loadView('insert', 'Add new News');				
+				$data['pageTitle'] = 'Add new News';
+				$this->loadView('insert', $data);				
 			}
 		}
 
@@ -48,7 +51,8 @@
 				if ($this->uri->segment(3) != null) {
 					$id = $this->uri->segment(3);
 					$data['data'] = $this->News->getNewbyID($id);
-					$this->loadView('update', 'Update News', $data);
+					$data['pageTitle'] = 'Update News';
+					$this->loadView('update', $data);
 				}else {
 					redirect("home", 'refresh');
 				}
@@ -62,8 +66,7 @@
 			redirect("home", "refresh");
 		}
 
-		private function loadView($view, $pageTitle, $data=[]) {
-			$data['pageTitle'] = $pageTitle;
+		private function loadView($view, $data=[]) {
 			$this->load->view('includes/header', $data);
 			$this->load->view($view, $data);
 			$this->load->view('includes/footer');
