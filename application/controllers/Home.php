@@ -14,11 +14,6 @@
 		{
 			$data['pageTitle'] = "News Table List";
 			$data['Data'] = $this->News->getAllNews();
-			foreach ($data["Data"] as $row) {
-				$date = $row['Date'];
-				$date = new DateTime($date);
-				$row['Date'] = $date->format("d/m/Y");
-			}
 			$this->loadView('home', 'News Table List', $data);
 		}
 
@@ -32,7 +27,7 @@
 				}else {
 					$data['Title'] = $this->input->post('Title');
 					$data['Text'] = $this->input->post('Text');
-					$data['Date'] = date('Y-m-d');
+					$data['Date'] = date('Y/m/d');
 					$this->News->insertNews($data);
 					redirect("home", 'refresh');
 				}	
@@ -72,5 +67,10 @@
 			$this->load->view('includes/header', $data);
 			$this->load->view($view, $data);
 			$this->load->view('includes/footer');
+		}
+
+		public function formatDate($date) {
+			$date = new DateTime($date);
+			return $date->format("d/m/Y");
 		}
 	}
