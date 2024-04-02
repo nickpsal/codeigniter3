@@ -68,9 +68,4 @@
 			$this->load->view($view, $data);
 			$this->load->view('includes/footer');
 		}
-
-		public function formatDate($date) {
-			$date = new DateTime($date);
-			return $date->format("d/m/Y");
-		}
 	}
