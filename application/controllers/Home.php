@@ -10,8 +10,7 @@
 			$this->load->model('News');
 		}
 
-		private function loadView($view, $pageTitle, $data=[]) {
-			$data['pageTitle'] = $pageTitle;
+		private function loadView($view, $data=[]) {
 			$this->load->view('includes/header', $data);
 			$this->load->view($view, $data);
 			$this->load->view('includes/footer');
@@ -54,8 +53,8 @@
 				$this->News->updateNews($Id, $data);
 				redirect("home", 'refresh');
 			}else {
-				$data['pageTitle'] = 'pageTitle';
 				if ($this->uri->segment(3) != null) {
+					$data['pageTitle'] = 'pageTitle';
 					$id = $this->uri->segment(3);
 					$data['data'] = $this->News->getNewbyID($id);
 					$data['pageTitle'] = 'Update News';
