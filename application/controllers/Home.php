@@ -53,9 +53,8 @@
 				$this->News->updateNews($Id, $data);
 				redirect("home", 'refresh');
 			}else {
-				if ($this->uri->segment(3) != null) {
+				if (!is_null($id)) {
 					$data['pageTitle'] = 'pageTitle';
-					$id = $this->uri->segment(3);
 					$data['data'] = $this->News->getNewbyID($id);
 					$data['pageTitle'] = 'Update News';
 					$this->loadView('update', $data);
@@ -66,7 +65,7 @@
 		}
 
 		public function delete($id = null) {
-			if ($this->uri->segment(3) != null) {
+			if (!is_null($id)) {
 				$this->News->deleteNews($id);
 			}
 			redirect("home", "refresh");
