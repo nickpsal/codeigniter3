@@ -27,7 +27,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 								<br/>
 								<div>
 									<input type="submit" class="btn btn-primary btn-sm" value="Submit" />
-									<a href="<?=site_url('home/')?>" name="back" class="btn btn-primary btn-sm">Back</a>
+									<a href="<?=site_url('home/getAll')?>" name="back" class="btn btn-primary btn-sm">Back</a>
 								</div>
 							<?php echo form_close();?>
 						</div>

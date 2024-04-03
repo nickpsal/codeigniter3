@@ -16,7 +16,7 @@
 			$this->load->view('includes/footer');
 		}
 
-		public function index()
+		public function getAll()
 		{
 			$data['pageTitle'] = "News Table List";
 			$data['Data'] = $this->News->getAllNews();
@@ -37,7 +37,7 @@
 					$data['Text'] = $this->input->post('Text');
 					$data['Date'] = date('Y/m/d');
 					$this->News->insertNews($data);
-					redirect("home", 'refresh');
+					redirect("home/getAll", 'refresh');
 				}	
 			}else {
 				$data['pageTitle'] = 'Add new News';
@@ -51,7 +51,7 @@
 				$data['Title'] = $this->input->post('Title');
 				$data['Text'] = $this->input->post('Text');
 				$this->News->updateNews($Id, $data);
-				redirect("home", 'refresh');
+				redirect("home/getAll", 'refresh');
 			}else {
 				if (!is_null($id)) {
 					$data['pageTitle'] = 'pageTitle';
@@ -59,7 +59,7 @@
 					$data['pageTitle'] = 'Update News';
 					$this->loadView('update', $data);
 				}else {
-					redirect("home", 'refresh');
+					redirect("home/getAll", 'refresh');
 				}
 			}
 		}
@@ -68,7 +68,7 @@
 			if (!is_null($id)) {
 				$this->News->deleteNews($id);
 			}
-			redirect("home", "refresh");
+			redirect("home/getAll", "refresh");
 		}
 
 		public function formatDate($date) {
