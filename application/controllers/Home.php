@@ -10,6 +10,13 @@
 			$this->load->model('News');
 		}
 
+		private function loadView($view, $pageTitle, $data=[]) {
+			$data['pageTitle'] = $pageTitle;
+			$this->load->view('includes/header', $data);
+			$this->load->view($view, $data);
+			$this->load->view('includes/footer');
+		}
+
 		public function index()
 		{
 			$data['pageTitle'] = "News Table List";
@@ -60,13 +67,6 @@
 				$this->News->deleteNews($id);
 			}
 			redirect("home", "refresh");
-		}
-
-		private function loadView($view, $pageTitle, $data=[]) {
-			$data['pageTitle'] = $pageTitle;
-			$this->load->view('includes/header', $data);
-			$this->load->view($view, $data);
-			$this->load->view('includes/footer');
 		}
 
 		public function formatDate($date) {
