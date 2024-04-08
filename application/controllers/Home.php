@@ -10,25 +10,26 @@
 			$this->load->model('News');
 		}
 
-		private function loadView($view, $data=[]) {
+		private function loadView($view, $data=[]): void
+		{
 			$this->load->view('includes/header', $data);
 			$this->load->view($view, $data);
 			$this->load->view('includes/footer');
 		}
 
-		public function getAll()
+		public function getAll(): void
 		{
 			$data['pageTitle'] = "News Table List";
 			$data['Data'] = $this->News->getAllNews();
-			$data['pageTitle'] = 'News Table List';
 			$this->loadView('home', $data);
 		}
 
-		public function insert() {
+		public function insert(): void
+		{
 			if ($this->input->server('REQUEST_METHOD') === 'POST') {
 				$this->form_validation->set_rules('Title', 'Title', 'required|max_length[100]');
 				$this->form_validation->set_rules('Text', 'Text', 'required');
-				if ($this->form_validation->run() == FALSE) {
+				if (!$this->form_validation->run()) {
 					// Validation failed, re-display the form with errors
 					$data['pageTitle'] = 'Add new News';
 					$this->loadView('insert', $data);
@@ -45,7 +46,8 @@
 			}
 		}
 
-		public function update($id = null) {
+		public function update($id = null): void
+		{
 			if ($this->input->server('REQUEST_METHOD') === 'POST') {
 				$Id = $this->input->post('Id');
 				$data['Title'] = $this->input->post('Title');
@@ -54,7 +56,6 @@
 				redirect("home/getAll", 'refresh');
 			}else {
 				if (!is_null($id)) {
-					$data['pageTitle'] = 'pageTitle';
 					$data['data'] = $this->News->getNewbyID($id);
 					$data['pageTitle'] = 'Update News';
 					$this->loadView('update', $data);
@@ -64,7 +65,8 @@
 			}
 		}
 
-		public function delete($id = null) {
+		public function delete($id = null): void
+		{
 			if (!is_null($id)) {
 				$this->News->deleteNews($id);
 			}
