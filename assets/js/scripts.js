@@ -11,8 +11,8 @@ $(document).ready(function () {
     $("#Title").on("keyup change", function () {
         var titleLength = $(this).val().length;
         var errorMessage = "";
-        if (titleLength < 50) {
-            errorMessage = "Title must be at least 50 characters long.";
+        if (titleLength < 5) {
+            errorMessage = "Title must be at least 5 characters long.";
         } else if (titleLength > 1000) {
             errorMessage = "Title cannot exceed 1000 characters.";
         }
