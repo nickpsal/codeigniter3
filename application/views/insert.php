@@ -29,7 +29,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 							<?php echo form_error('Text'); ?>
 							<br />
 							<label for="dropdown1">Dropdown 1</label>
-							<select name="dropdown1" id="dropdown1">
+							<select name="dropdown1" id="dropdown1" required>
 								<option value="option1">None</option>
 								<option value="option2">Option 1</option>
 								<option value="option3">Option 2</option>
@@ -37,7 +37,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 							</select>
 							<br />
 							<label for="dropdown2">Dropdown 2</label>
-							<select name="dropdown2" id="dropdown2">
+							<select name="dropdown2" id="dropdown2" required>
 
 							</select>
 							<br />
