@@ -45,6 +45,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 								<input type="submit" id="Submit" class="btn btn-primary btn-sm" value="Submit" />
 								<a href="<?= site_url('home/getAll') ?>" name="back" class="btn btn-primary btn-sm">Back</a>
 							</div>
+							<span id="dropdown-error-message"></span>
 							<?php echo form_close(); ?>
 						</div>
 					</div>

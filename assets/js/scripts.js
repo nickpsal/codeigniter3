@@ -37,23 +37,29 @@ $(document).ready(function () {
     });
 
     function populateDropdown2(selectedValue1) {
+        var DropdownError = "";
         $("#dropdown2").empty();  // Clear existing options in dropdown2 before populating
         switch (selectedValue1) {
             case "option1":
                 $("#dropdown2").append($('<option value="">Please Select an option fron Dropdown1</option>'));
+                DropdownError = "Error No option choosed";
                 break;
             case "option2":
+                DropdownError = "";
                 $("#dropdown2").append($('<option value="option1a">Option 1a</option>'));
                 $("#dropdown2").append($('<option value="option1b">Option 1b</option>'));
                 break;
             case "option3":
+                DropdownError = "";
                 $("#dropdown2").append($('<option value="option2a">Option 2a</option>'));
                 $("#dropdown2").append($('<option value="option2b">Option 2b</option>'));
                 break;
             case "option4":
+                DropdownError = "";
                 $("#dropdown2").append($('<option value="option3a">Option 3a</option>'));
                 $("#dropdown2").append($('<option value="option3b">Option 3b</option>'));
                 break;
         }
+        $('#dropdown-error-message').text(DropdownError);
     }
 });
