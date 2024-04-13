@@ -15,9 +15,6 @@ $(document).ready(function () {
         } else if (titleLength > 1000) {
             errorMessage = "Title cannot exceed 1000 characters.";
             $("#title-error-message").text(errorMessage);
-        } else {
-            errorMessage = "";
-            $("#title-error-message").text(errorMessage);
         }
 
         // Check conditions for the text area
@@ -37,7 +34,7 @@ $(document).ready(function () {
         }
 
         // Update the Submit button disabled property
-        $("#Submit").prop("disabled", errorMessage !== "" || titleLength === 0 || textLength === 0 || dropdown1Value === "");
+        $("#Submit").prop("disabled", errorMessage !== "" || titleLength < 5 || titleLength > 1000 || textLength === 0 || dropdown1Value === "");
     }
 
     // Bind keyup and change event handlers to Title and Text fields

@@ -32,21 +32,18 @@ class Home extends CI_Controller
 		$options = [];
 		switch ($selectedOption) {
 			case "option1":
-				$options = [];
-				break;
-			case "option2":
 				$options = [
 					['id' => 'option1a', 'name' => 'Option 1a'],
 					['id' => 'option1b', 'name' => 'Option 1b']
 				];
 				break;
-			case "option3":
+			case "option2":
 				$options = [
 					['id' => 'option2a', 'name' => 'Option 2a'],
 					['id' => 'option2b', 'name' => 'Option 2b']
 				];
 				break;
-			case "option4":
+			case "option3":
 				$options = [
 					['id' => 'option3a', 'name' => 'Option 3a'],
 					['id' => 'option3b', 'name' => 'Option 3b']
