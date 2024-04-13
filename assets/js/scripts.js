@@ -21,8 +21,8 @@ $(document).ready(function () {
         }
 
         // Check conditions for the text area
-        var Message = ""
-;        var maxCharacters = 1500;
+        var Message = "";
+       var maxCharacters = 1500;
         if (textLength >= maxCharacters) {
             Message = "";
             errorMessage = "Maximum character limit exceeded for text.";
