@@ -21,12 +21,18 @@ $(document).ready(function () {
         }
 
         // Check conditions for the text area
-        if (textLength > 1500) {
+        var Message = ""
+;        var maxCharacters = 1500;
+        if (textLength >= maxCharacters) {
+            Message = "";
             errorMessage = "Maximum character limit exceeded for text.";
+            $("#text-characters-counter").text(Message);
             $("#text-error-message").text(errorMessage);
         } else {
-            remaining = 1500 - textLength;
-            var Message = "Remaining Characters " + remaining + " / 1500";
+            remaining = maxCharacters - textLength;
+            errorMessage = "";
+            Message = "Remaining Characters " + remaining + " / " + maxCharacters;
+            $("#text-error-message").text(errorMessage);
             $("#text-characters-counter").text(Message);
         }
 
