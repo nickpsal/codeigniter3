@@ -30,10 +30,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 							<br />
 							<label for="dropdown1">Dropdown 1</label>
 							<select name="dropdown1" id="dropdown1" required>
-								<option value="option1">None</option>
-								<option value="option2">Option 1</option>
-								<option value="option3">Option 2</option>
-								<option value="option4">Option 3</option>
+								<option value=""></option>
+								<option value="option1">Option 1</option>
+								<option value="option2">Option 2</option>
+								<option value="option3">Option 3</option>
 							</select>
 							<br />
 							<label for="dropdown2">Dropdown 2</label>

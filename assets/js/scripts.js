@@ -5,6 +5,7 @@ $(document).ready(function () {
     function updateSubmitButtonStatus() {
         var titleLength = $("#Title").val().length;
         var textLength = $("#Text").val().length;
+        var dropdown1Value = $("#dropdown1").val();
         var errorMessage = "";
 
         // Check conditions for the title
@@ -30,11 +31,11 @@ $(document).ready(function () {
         }
 
         // Update the Submit button disabled property
-        $("#Submit").prop("disabled", errorMessage !== "" || titleLength === 0 || textLength === 0);
+        $("#Submit").prop("disabled", errorMessage !== "" || titleLength === 0 || textLength === 0 || dropdown1Value === "");
     }
 
     // Bind keyup and change event handlers to Title and Text fields
-    $("#Title, #Text").on("keyup change", function () {
+    $("#Title, #Text, #dropdown1").on("keyup change", function () {
         updateSubmitButtonStatus();  // Update button status whenever text changes
     });
 
