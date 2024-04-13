@@ -1,7 +1,38 @@
 $(document).ready(function () {
+    //sort table home page
+    $('#myTable th[data-sort]').click(function () {
+        if (!$(this).hasClass('no-sort')) {
+            var table = $(this).parents('table').eq(0);
+            var rows = table.find('tr:gt(0)').toArray().sort(comparer($(this).index()));
+            this.asc = !this.asc;
+            if (!this.asc) { rows = rows.reverse(); }
+            for (var i = 0; i < rows.length; i++) { table.append(rows[i]); }
+        }
+    });
+
+    function comparer(index) {
+        return function (a, b) {
+            var valA = getCellValue(a, index), valB = getCellValue(b, index);
+            if (index === 3) { // If sorting by Date column
+                valA = parseDate(valA);
+                valB = parseDate(valB);
+            }
+            return $.isNumeric(valA) && $.isNumeric(valB) ? valA - valB : valA.toString().localeCompare(valB, undefined, { numeric: true });
+        };
+    }
+
+    function getCellValue(row, index) {
+        return $(row).children('td').eq(index).text();
+    }
+
+    function parseDate(dateString) {
+        var parts = dateString.split('/');
+        return new Date(parts[0], parts[1] - 1, parts[2]); // Month is 0-based
+    }
+
     // Call the function to set the initial state of the Submit button
     updateSubmitButtonStatus();
-    
+
     function updateSubmitButtonStatus() {
         var titleLength = $("#Title").val().length;
         var textLength = $("#Text").val().length;
@@ -19,7 +50,7 @@ $(document).ready(function () {
 
         // Check conditions for the text area
         var Message = "";
-       var maxCharacters = 1500;
+        var maxCharacters = 1500;
         if (textLength >= maxCharacters) {
             Message = "";
             errorMessage = "Maximum character limit exceeded for text.";

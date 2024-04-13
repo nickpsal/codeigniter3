@@ -5,3 +5,8 @@
 .panel-body {
     text-align: center;
 }
+
+#myTable th {
+    cursor: pointer;
+    background-color: red;
+}
