@@ -1,11 +1,35 @@
 $(document).ready(function () {
     // Initial setup (optional): Populate dropdown2 with default options based on initial state of dropdown1
     var selectedValue1 = $("#dropdown1").val();
-    populateDropdown2(selectedValue1);
+    //this if we want to call the js function to get the options with js
+    //populateDropdown2(selectedValue1);    
 
     $("#dropdown1").change(function () {
+        $("#dropdown2").empty();
         var selectedValue1 = $(this).val();
-        populateDropdown2(selectedValue1);
+        $.ajax({
+            //if it si on the same controller with put only the method
+            url: 'getOptions',  // Update the URL based on your CI configuration 
+            type: 'POST',
+            data: { selectedValue1: selectedValue1 },
+            dataType: 'json',
+            success: function (options) {
+                if (options.length > 0) {
+                    options.forEach(function (option) {
+                        $("#dropdown2").append($('<option>', {
+                            value: option.id,
+                            text: option.name
+                        }));
+                    });
+                } else {
+                    $("#dropdown2").append($('<option value="">No options available</option>'));
+                }
+                $('#dropdown-error-message').text("");
+            },
+            error: function () {
+                $('#dropdown-error-message').text("Error: Could not retrieve options");
+            }
+        });
     });
 
     $("#Title").on("keyup change", function () {
@@ -22,13 +46,13 @@ $(document).ready(function () {
         $("#Submit").prop("disabled", errorMessage !== "");
     });
 
-    $('#Text').on('keyup change', function(){
+    $('#Text').on('keyup change', function () {
         var textLength = $(this).val().length;
         var errorMessage = "";
         var maxLength = 1500;
         var remainingChars = maxLength - textLength;
         $('#text-characters-counter').text(remainingChars + ' characters remaining');
-        if(textLength > maxLength){
+        if (textLength > maxLength) {
             errorMessage = "Maximum character limit exceeded";
         }
         $('#text-characters-counter').text(remainingChars);
