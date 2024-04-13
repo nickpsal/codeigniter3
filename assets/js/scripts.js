@@ -1,8 +1,42 @@
 $(document).ready(function () {
-    // Initial setup (optional): Populate dropdown2 with default options based on initial state of dropdown1
-    var selectedValue1 = $("#dropdown1").val();
-    //this if we want to call the js function to get the options with js
-    //populateDropdown2(selectedValue1);    
+    // Call the function to set the initial state of the Submit button
+    updateSubmitButtonStatus();
+    
+    function updateSubmitButtonStatus() {
+        var titleLength = $("#Title").val().length;
+        var textLength = $("#Text").val().length;
+        var errorMessage = "";
+
+        // Check conditions for the title
+        if (titleLength < 5) {
+            errorMessage = "Title must be at least 5 characters long.";
+            $("#title-error-message").text(errorMessage);
+        } else if (titleLength > 1000) {
+            errorMessage = "Title cannot exceed 1000 characters.";
+            $("#title-error-message").text(errorMessage);
+        } else {
+            errorMessage = "";
+            $("#title-error-message").text(errorMessage);
+        }
+
+        // Check conditions for the text area
+        if (textLength > 1500) {
+            errorMessage = "Maximum character limit exceeded for text.";
+            $("#text-error-message").text(errorMessage);
+        } else {
+            remaining = 1500 - textLength;
+            var Message = "Remaining Characters " + remaining + " / 1500";
+            $("#text-characters-counter").text(Message);
+        }
+
+        // Update the Submit button disabled property
+        $("#Submit").prop("disabled", errorMessage !== "" || titleLength === 0 || textLength === 0);
+    }
+
+    // Bind keyup and change event handlers to Title and Text fields
+    $("#Title, #Text").on("keyup change", function () {
+        updateSubmitButtonStatus();  // Update button status whenever text changes
+    });
 
     $("#dropdown1").change(function () {
         $("#dropdown2").empty();
@@ -30,34 +64,6 @@ $(document).ready(function () {
                 $('#dropdown-error-message').text("Error: Could not retrieve options");
             }
         });
-    });
-
-    $("#Title").on("keyup change", function () {
-        var titleLength = $(this).val().length;
-        var errorMessage = "";
-        if (titleLength < 5) {
-            errorMessage = "Title must be at least 5 characters long.";
-        } else if (titleLength > 1000) {
-            errorMessage = "Title cannot exceed 1000 characters.";
-        }
-        $("#title-error-message").text(errorMessage);
-        // Optionally disable submit button if there's an error
-        //the Submit is the id 
-        $("#Submit").prop("disabled", errorMessage !== "");
-    });
-
-    $('#Text').on('keyup change', function () {
-        var textLength = $(this).val().length;
-        var errorMessage = "";
-        var maxLength = 1500;
-        var remainingChars = maxLength - textLength;
-        $('#text-characters-counter').text(remainingChars + ' characters remaining');
-        if (textLength > maxLength) {
-            errorMessage = "Maximum character limit exceeded";
-        }
-        $('#text-characters-counter').text(remainingChars);
-        // Optionally disable submit button if there's an error
-        $("#Submit").prop("disabled", errorMessage !== "");
     });
 
     function populateDropdown2(selectedValue1) {
